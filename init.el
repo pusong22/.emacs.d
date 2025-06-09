@@ -12,15 +12,11 @@
 (global-set-key (kbd "<f2>") #'open-init-file)
 
 
-(require 'package)
 ;; package
+(require 'package)
 (setq package-archives '(("gnu"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
                          ("nongnu" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
                          ("melpa"  . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
-
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
 
 ;; apperance
 (menu-bar-mode -1)
@@ -36,6 +32,7 @@
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
 (line-number-mode 1)
+
 
 
 ;; load theme
@@ -68,16 +65,6 @@
 (setq tab-width 4)
 (setq indent-tabs-mode nil)
 
-;;
-;; (use-package corfu
-;;   :ensure t
-;;   :init
-;;   (global-corfu-mode)
-;;   :custom
-;;   (corfu-auto t)
-;;   )
-
-
 ;; python
 
 
@@ -96,15 +83,6 @@
     (setq python-shell-virtualenv-root venv-path)
     (message "Python virtualenv set to: %s" venv-path)
     (run-hooks 'my/python-venv-change-hook)))
-
-;; (add-hook 'my/python-venv-change-hook
-;;           (lambda ()
-;;             (let ((server (eglot-current-server)))
-;;               (if server
-;;                   (eglot-reconnect server t)
-;;                 (eglot-ensure)))))
-
-;;(setq debug-on-error t)
 
 (defun my/run-python ()
   "Run current Python file using compilation-mode with virtualenv support."
